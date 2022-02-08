@@ -1,0 +1,13 @@
+taloushallinto ja pankkiala
+myynti- ja kaupan ala
+asiakaspalvelu
+rakennusala
+käsityöalat
+hyvinvointi- ja henkilöpalvelut
+ravintola- ja matkailuala
+kuljetus, logistiikka ja liikenne
+sosiaali- ja hoiva-ala
+asennus, huolto ja puhtaanapito
+tieto- ja tietoliikennetekniikka
+henkilöstöala
+
