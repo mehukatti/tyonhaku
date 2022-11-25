@@ -19,7 +19,7 @@ class tyonhaku_sovellus(Frame):
 
         #Ilmoitus tiedostojen sijainnista ja tuloksista
         self.tuloskohta = tk.Label(self.master, text=' ')
-        self.tuloskohta.grid(row=5,columnspan=4, pady=5)
+        self.tuloskohta.grid(row=5,columnspan=4, pady=5, sticky=W)
 
         #Tarkistus-nappi haun tarkistuksen jälkeen
         """
@@ -29,22 +29,22 @@ class tyonhaku_sovellus(Frame):
         Tällä hetkellä kategorioita ei voi valita kuin excelin tai suoraan jsonin kautta.
         """
         self.tarkistus_nappi = Button(self.master, text='Tarkista', command=osuvuudet) 
-        self.tarkistus_nappi.grid(row=6,column=3, columnspan=2, padx=5, pady=5)
+        self.tarkistus_nappi.grid(row=6,column=3, columnspan=2, padx=5, pady=5, sticky=W)
 
         #Hakusanat-tekstiruutu
-        label1 = tk.Label(self.master, text='Hakusanat', font=('helvetica', 10)).grid(row=1, sticky='w', column=0, padx=5)
+        label1 = tk.Label(self.master, text='Hakusanat', font=('helvetica', 10)).grid(row=1, column=0, padx=5, sticky=W)
         self.hakusana_kentta = tk.Entry(self.master)
-        self.hakusana_kentta.grid(row=2, sticky='w', column=0, padx=5)
+        self.hakusana_kentta.grid(row=2, column=0, padx=5, sticky=W)
         
         #Sijainti-tekstiruutu
-        label2 = tk.Label(self.master, text='Sijainti', font=('helvetica', 10)).grid(row=1, sticky='w', column=1, padx=5)
+        label2 = tk.Label(self.master, text='Sijainti', font=('helvetica', 10)).grid(row=1, column=1, padx=5, sticky=W)
         self.sijainti_kentta = tk.Entry(self.master)
-        self.sijainti_kentta.grid(row=2, sticky='w', column=1, padx=5)
+        self.sijainti_kentta.grid(row=2, column=1, padx=5, sticky=W)
 
         #Mutta ei näillä-tekstiruutu
-        label3 = tk.Label(self.master, text='Mutta ei näillä titteleillä', font=('helvetica', 10)).grid(row=1, sticky='w', column=3, padx=5)
+        label3 = tk.Label(self.master, text='Mutta ei näillä titteleillä', font=('helvetica', 10)).grid(row=1, column=3, padx=5, sticky=W)
         self.ei_nailla_titteleilla = tk.Entry(self.master)
-        self.ei_nailla_titteleilla.grid(row=2, sticky='w', column=3, padx=5)
+        self.ei_nailla_titteleilla.grid(row=2, column=3, padx=5, sticky=W)
         
         #Hakusivujen valintaruudut
         self.duunitori_luku = tk.IntVar()
@@ -55,49 +55,62 @@ class tyonhaku_sovellus(Frame):
         self.tekstista = tk.Checkbutton(self.master, text="Haku myös tekstistä", variable=self.duunitori_tekstista, onvalue="&search_also_descr=1", offvalue="")
         self.tyokkari = tk.Checkbutton(self.master, text="Työvoimatoimisto", variable=self.tyokkari_luku, onvalue=1, offvalue=0)
         
-        self.duunitori.grid(row=6,column=0, padx=5)
-        self.tekstista.grid(row=7,column=0, padx=5)
-        self.tyokkari.grid(row=6,column=1, padx=5)
+        self.duunitori.grid(row=6,column=0, padx=5, sticky=W)
+        self.tekstista.grid(row=7,column=0, padx=5, sticky=W)
+        self.tyokkari.grid(row=6,column=1, padx=5, sticky=W)
 
         #duunitorin kategorioiden valinta
         """
+        Lisäämällä tämä voidaan päästä eroon Tarkista-napista.
         duunitorin kategorioiden valinta parantaa hakutuloksia, kun hakee esim. bioalalta.
         Tällä hetkellä niiden valinta tehdään lisäämällä tulosexceliin 1 tai 0.
         Ei ole kovin näppärää ja haluaisin lisätä myös sen valinnan.
         Kategorioita on kuitenkin useita ja haluaisin löytää jonkin järkevän monivalinta-vaihtoehdon.
         """
-        #tk.Label(self.master, text='Duunitorin kategoriat', font=('helvetica', 10)).grid(row=8, sticky='w', column=0, padx=5)
+        #tk.Label(self.master, text='Duunitorin kategoriat', font=('helvetica', 10)).grid(row=8, column=0, padx=5)
         #kaikissa on oletuksena 1 eli oletuksena valittu
-        self.duunitorin_kategoriat = {
-            "asennus, huolto ja puhtaanapito (ala)": 1,
-            "asiakaspalvelu (ala)": 1,
-            "asiantuntijatyöt ja konsultointi (ala)": 1,
-            "hallinto ja yleiset toimistotyöt (ala)": 1,
-            "henkilöstöala (ala)": 1,
-            "hyvinvointi ja henkilöpalvelut (ala)": 1,
-            "johtotehtävät (ala)": 1,
-            "julkinen sektori ja järjestöt (ala)": 1,
-            "kiinteistöala (ala)": 1,
-            "kuljetus, logistiikka ja liikenne (ala)": 1,
-            "kulttuuri-, viihde- ja taidealat (ala)": 1,
-            "lakiala (ala)": 1,
-            "markkinointi (ala)": 1,
-            "myynti ja kaupan ala (ala)": 1,
-            "opetusala (ala)": 1,
-            "opiskelijoiden työpaikat (ala)": 1,
-            "rakennusala (ala)": 1,
-            "ravintola- ja matkailuala (ala)": 1,
-            "sosiaali- ja hoiva-ala (ala)": 1,
-            "taloushallinto ja pankkiala (ala)": 1,
-            "teollisuus ja teknologia (ala)": 1,
-            "terveydenhuoltoala (ala)": 1,
-            "tieto- ja tietoliikennetekniikka (ala)": 1,
-            "turvallisuusala (ala)": 1,
-        }
+        self.duunitorin_kategoriat_lista = [
+            "asennus, huolto ja puhtaanapito (ala)",
+            "asiakaspalvelu (ala)",
+            "asiantuntijatyöt ja konsultointi (ala)",
+            "hallinto ja yleiset toimistotyöt (ala)",
+            "henkilöstöala (ala)",
+            "hyvinvointi ja henkilöpalvelut (ala)",
+            "johtotehtävät (ala)",
+            "julkinen sektori ja järjestöt (ala)",
+            "kiinteistöala (ala)",
+            "kuljetus, logistiikka ja liikenne (ala)",
+            "kulttuuri-, viihde- ja taidealat (ala)",
+            "lakiala (ala)",
+            "markkinointi (ala)",
+            "myynti ja kaupan ala (ala)",
+            "opetusala (ala)",
+            "opiskelijoiden työpaikat (ala)",
+            "rakennusala (ala)",
+            "ravintola- ja matkailuala (ala)",
+            "sosiaali- ja hoiva-ala (ala)",
+            "taloushallinto ja pankkiala (ala)",
+            "teollisuus ja teknologia (ala)",
+            "terveydenhuoltoala (ala)",
+            "tieto- ja tietoliikennetekniikka (ala)",
+            "turvallisuusala (ala)"
+        ]
+
+        self.duunitori_kategoria_ckeckboxit = []#lista, jonka sisään tallennetaan duunitorikaterogioiden StringVar:it
+        for duunitorin_kategoria in self.duunitorin_kategoriat_lista:
+            #luodaan checkbox jokaiselle duunitorin kategorialle.
+            self.duunitori_kategorian_arvo = tk.StringVar()
+            self.duunitori_kategoria_checkbox = tk.Checkbutton(self.master, text=duunitorin_kategoria, variable=self.duunitori_kategorian_arvo, onvalue=duunitorin_kategoria, offvalue="")
+            self.duunitori_kategoria_checkbox.grid(row=len(self.duunitori_kategoria_ckeckboxit)+7,column=0, sticky=W)
+            self.duunitori_kategoria_ckeckboxit.append(self.duunitori_kategorian_arvo)
+
+        #tällä hetkellä vain tulostetaan valitut duunitorin kategoriat, mutta mitään niillä ei tehdä.
+        self.my_button = Button(self.master, text="klikkaa", command=self.tulosta)
+        self.my_button.grid(row=0, column=0, sticky=W)
         
         #Hakujen rajoitus ilmoitusajankohdan mukaan
         self.tyokkari_aika = tk.Label(self.master, text='Julkaistu')
-        self.tyokkari_aika.grid(row=8, column=1, sticky='w', pady=5, padx=5)
+        self.tyokkari_aika.grid(row=31, column=1, pady=5, padx=5, sticky=W)
         self.ilmoitusajan_valinta = tk.IntVar()
         
         self.kaikki = Radiobutton(self.master, text="kaikki", value=0, variable=self.ilmoitusajan_valinta)
@@ -105,28 +118,28 @@ class tyonhaku_sovellus(Frame):
         self.kolme_paivaa = Radiobutton(self.master, text="3 päivää", value=2, variable=self.ilmoitusajan_valinta)
         self.viikko = Radiobutton(self.master, text="viikko", value=3, variable=self.ilmoitusajan_valinta)
         
-        self.kaikki.grid(row=9, column=1, sticky='w', pady=5, padx=5)
-        self.vuorokausi.grid(row=10, column=1, sticky='w', pady=5, padx=5)
-        self.kolme_paivaa.grid(row=11, column=1, sticky='w', pady=5, padx=5)
-        self.viikko.grid(row=12, column=1, sticky='w', pady=5, padx=5)
+        self.kaikki.grid(row=32, column=1, pady=5, padx=5, sticky=W)
+        self.vuorokausi.grid(row=33, column=1, pady=5, padx=5, sticky=W)
+        self.kolme_paivaa.grid(row=34, column=1, pady=5, padx=5, sticky=W)
+        self.viikko.grid(row=35, column=1, pady=5, padx=5, sticky=W)
         
         #Tallenna haku
         self.tallenna = tk.IntVar()
         self.tallenna_haku = tk.Checkbutton(self.master, text="Tallenna, nimellä:", variable=self.tallenna, onvalue=1, offvalue=0)
-        self.tallenna_haku.grid(row=13,column=0, padx=5)
+        self.tallenna_haku.grid(row=36,column=0, padx=5, sticky=W)
         self.nimella_kentta = tk.Entry(self.master)
-        self.nimella_kentta.grid(row=14, sticky='w', column=0, padx=5)
+        self.nimella_kentta.grid(row=37, column=0, padx=5, sticky=W)
         
         #Tallennettu haku
-        self.tallennettu_nappi = Button(self.master, text='Tallennettu haku', command=self.select_saved_search)
-        self.tallennettu_nappi.grid(row=16,column=1, columnspan=2, padx=5, pady=5)
+        self.tallennettu_nappi = Button(self.master, text='Tallennettu haku', command=self.valitse_ja_nayta_tallennetut_hakuparametrit)
+        self.tallennettu_nappi.grid(row=39,column=1, columnspan=2, padx=5, pady=5, sticky=W)
         
         #Hae-nappi
         self.haku_nappi = Button(self.master, text='Hae', command=self.take_input)
-        self.haku_nappi.grid(row=15,column=0, columnspan=2, padx=5)
+        self.haku_nappi.grid(row=40,column=0, columnspan=2, padx=5, sticky=W)
         #Lopetus-nappi
         self.lopeta_nappi = Button(self.master, text='Lopeta', command=self.master.destroy)
-        self.lopeta_nappi.grid(row=15,column=2, padx=5)
+        self.lopeta_nappi.grid(row=41,column=2, padx=5, sticky=W)
 
         #jos haluat muuttaa tulosexcelin tai tietojen tallennustiedoston nimeä, muuta tästä.
         self.tallennettujen_hakujen_polut = "names_of_saved_param.json" #tänne tallennetaan tallennettujen hakujen nimet 
@@ -135,6 +148,11 @@ class tyonhaku_sovellus(Frame):
         #jotta voi laskea, kauanko haku kestää
         self.aloitus_aika = None
 
+    def tulosta(self):
+        #testaa toimiiko duunitorien valinta
+        for kategoria in self.duunitori_kategoria_ckeckboxit:
+            print(kategoria.get())
+    
     def tallenna_GUI_input(self, nimi):
         tallennetut_parametrit = {
             #koska laitoin vain yhden kentän per hakusana ja sijainti, pitää useat hakusanat ja sijainnit erottaa jollakin merkillä.
@@ -145,6 +163,7 @@ class tyonhaku_sovellus(Frame):
             "published":self.ilmoitusajan_valinta.get(),
             "duunitori_from_text_also": self.duunitori_tekstista.get(),
             "not_with_these_words": self.ei_nailla_titteleilla.get().split(", ")
+            #lisää duunitorin kategoriat tänne myös
         }
         #tallennetaan hakutekijät omalla nimellä yhteen tiedostoon
         access_files.write_data_to_json_with(tallennetut_parametrit, nimi + '.json')
@@ -173,29 +192,36 @@ class tyonhaku_sovellus(Frame):
         self.en_disable_widgets('disable')
         self.hakusivun_valinta(self.aloitus_aika)
 
-    def select_saved_search(self):
+    def valitse_ja_nayta_tallennetut_hakuparametrit(self):
         #avataan tiedosto ja luodaan sen perusteella dropdown menu
-        saved_searches_options = access_files.open_json(self.tallennettujen_hakujen_polut)
-        if len(saved_searches_options) == 0:
+        tallennettujen_hakuparametrien_nimet = access_files.open_json(self.tallennettujen_hakujen_polut)
+        if len(tallennettujen_hakuparametrien_nimet) == 0:
             self.tuloskohta.config(text="Ei tallennettuja hakusanoja. Anna hakusanat ja paina Hae-nappia.")
         else:
-            #dropdown menun luonti
-            self.named_searches = StringVar(self.master)
-            self.named_searches.set(saved_searches_options[0]) # default value
-            w = OptionMenu(self.master, self.named_searches, *saved_searches_options)
-            w.grid(row=17, column=0)
+            #luo dropdown menun, jossa nimet, joilla aiemmin tallennetut hakuparametrit on nimetty.
+            self.tallennettujen_hakuparametrien_nimet_pudotusvalikko = StringVar(self.master)
+            self.tallennettujen_hakuparametrien_nimet_pudotusvalikko.set(tallennettujen_hakuparametrien_nimet[0]) # default value
+            w = OptionMenu(self.master, self.tallennettujen_hakuparametrien_nimet_pudotusvalikko, *tallennettujen_hakuparametrien_nimet)
+            w.grid(row=42, column=0, sticky=W)
 
-            self.show_chosen_parameters_button = Button(self.master, text='Näytä parametrit', command=self.load_saved_input)
-            self.show_chosen_parameters_button.grid(row=17,column=1, columnspan=2, padx=5, pady=5)
+            #kun käyttäjä painaa alla olevaa nappia, suoritetaan funktio "lataa_tallennetut_hakuparametrit"
+            self.nayta_valitut_hakuparametrit_nappi = Button(self.master, text='Näytä parametrit', command=self.lataa_tallennetut_hakuparametrit)
+            self.nayta_valitut_hakuparametrit_nappi.grid(row=43,column=1, columnspan=2, padx=5, pady=5, sticky=W)
 
             #tarkastelu-vaihtoehdon luonti (poistaminen ja muokkaaminen)
 
-    def load_saved_input(self):
-        tallennetut_tiedot = access_files.open_json(self.named_searches.get() + ".json")
+    def lataa_tallennetut_hakuparametrit(self):
+        #laitetaan GUI:n kenttien arvoiksi nimellä X.json tallennetussa jsonissa olevat hakuparametrit.
+        
+        #ladataan valitulla nimellä tallennetu x.json.
+        tallennetut_tiedot = access_files.open_json(self.tallennettujen_hakuparametrien_nimet_pudotusvalikko.get() + ".json")
+        
+        #tyhjennä GUI vanhoista tiedoista
         self.tyhjenna_GUI_input()
         self.tyhjenna_tulosteksti_GUIssa()
         self.aloitus_aika = time.time()
 
+        #laitetaan parametrit tyhjennettyihin kenttiin:
         self.hakusana_kentta.insert(0, access_files.list_to_string(tallennetut_tiedot["search_words"], ", "))
         self.sijainti_kentta.insert(0, access_files.list_to_string(tallennetut_tiedot["locations"], ", "))
         self.duunitori_luku.set(int(tallennetut_tiedot["duunitori"]))
@@ -203,37 +229,41 @@ class tyonhaku_sovellus(Frame):
         self.ilmoitusajan_valinta.set(int(tallennetut_tiedot["published"]))
         self.duunitori_tekstista.set(tallennetut_tiedot["duunitori_from_text_also"])
         self.ei_nailla_titteleilla.insert(0, access_files.list_to_string(tallennetut_tiedot["not_with_these_words"], ", "))
-        self.saved_search_info = tk.Label(self.master, text='Voit muokata ennen kuin painat Jatko-nappia ja tiedot tallentuvat automaattisesti.')
-        self.saved_search_info.grid(row=20,columnspan=4, pady=5)
+        #lisää tänne duunitorin kategorioiden tuonti
+        self.tallennetun_haun_alla_oleva_ohjetekstikentta = tk.Label(self.master, text='Voit muokata ennen kuin painat Jatko-nappia ja tiedot tallentuvat automaattisesti.')
+        self.tallennetun_haun_alla_oleva_ohjetekstikentta.grid(row=20,columnspan=4, pady=5, sticky=W)
 
-        #lopuksi luo jatkonapin ja poisto-napin
-        self.continue_saved_search_button = Button(self.master, text='Jatka tallennettua hakua', command=self.hae_tallennetuilla_parametreilla)
-        self.continue_saved_search_button.grid(row=18,column=2, columnspan=2, padx=5, pady=5)
-        self.remove_saved_search_button = Button(self.master, text='Poista tallennettu haku', command=self.remove_selected_search_parameters)
-        self.remove_saved_search_button.grid(row=18,column=0, columnspan=2, padx=5, pady=5)
+        #lopuksi luo jatkonapin ja poisto-napin juuri ladattujen hakuparametrien poistolle tai haun jatkamiselle
+        self.jatka_hakua_tallennetuilla_parametreilla_nappi = Button(self.master, text='Jatka tallennettua hakua', command=self.hae_tallennetuilla_parametreilla)
+        self.jatka_hakua_tallennetuilla_parametreilla_nappi.grid(row=43,column=2, columnspan=2, padx=5, pady=5, sticky=W)
+        self.poista_valitut_tallennetut_hakuparametrit_nappi = Button(self.master, text='Poista tallennettu haku', command=self.poista_valitut_tallennetut_hakuparametrit_funktio)
+        self.poista_valitut_tallennetut_hakuparametrit_nappi.grid(row=44,column=0, columnspan=2, padx=5, pady=5, sticky=W)
 
-    def remove_selected_search_parameters(self):
+    def poista_valitut_tallennetut_hakuparametrit_funktio(self):
         #poistaa ne tallennetut hakuparametrit, jotka on valittuna.
-        remove_this = self.named_searches.get()
+        valitut_hakuparametrit = self.tallennettujen_hakuparametrien_nimet_pudotusvalikko.get() #millä nimellä tallennetut hakuparametrit on nimetty
         #tahan viela vahvistuslaatikko voisi olla ok, mutta en nyt jaksa tehda.
-        names_of_saved_params = access_files.open_json(self.tallennettujen_hakujen_polut)
-        if remove_this in names_of_saved_params:
-            names_of_saved_params.remove(remove_this)
-            access_files.write_data_to_json_with(names_of_saved_params, self.tallennettujen_hakujen_polut)
-            os.remove(remove_this + ".json")
-            self.saved_search_info.config(text="poistettu tallennetut hakutiedot nimellä: " + remove_this)
-            self.select_saved_search #this does not update optionmenu
+        tallennettujen_parametrien_nimet = access_files.open_json(self.tallennettujen_hakujen_polut)
+        if valitut_hakuparametrit in tallennettujen_parametrien_nimet:
+            tallennettujen_parametrien_nimet.remove(valitut_hakuparametrit)
+            access_files.write_data_to_json_with(tallennettujen_parametrien_nimet, self.tallennettujen_hakujen_polut)
+            os.remove(valitut_hakuparametrit + ".json")
+            self.tallennetun_haun_alla_oleva_ohjetekstikentta.config(text="poistettu tallennetut hakutiedot nimellä: " + valitut_hakuparametrit)
+            self.valitse_ja_nayta_tallennetut_hakuparametrit #this does not update optionmenu
         else:
-            self.saved_search_info.config(text="virhe yrittäessä poistaa hakutietoja nimellä: " + remove_this)
+            self.tallennetun_haun_alla_oleva_ohjetekstikentta.config(text="virhe yrittäessä poistaa hakutietoja nimellä: " + valitut_hakuparametrit)
 
     def hae_tallennetuilla_parametreilla(self):
         self.en_disable_widgets("disabled") #estää GUI:n käytön haun aikana
-        self.tallenna_GUI_input(self.named_searches.get()) #tallenna sillä nimellä, mikä valittiin
+        self.tallenna_GUI_input(self.tallennettujen_hakuparametrien_nimet_pudotusvalikko.get()) #tallenna sillä nimellä, mikä valittiin
         self.hakusivun_valinta(time.time())
 
     def hakusivun_valinta(self, aloitus_aika):
+        #ennen haun suorittamista tulee tarkistaa, onko hakusivusto valittu ja, mitkä hakusivustot valittiin.
         print("hakusivun valinta")
+        #nolla_tyhjaksi on funktio, joka muuttaa nollat tyhjiksi merkkijonoiksi, jotta ei haeta nollilla.
         sana, paikka, ei_tittelit = access_files.nolla_tyhjaksi(self.hakusana_kentta.get()), access_files.nolla_tyhjaksi(self.sijainti_kentta.get()), access_files.nolla_tyhjaksi(self.ei_nailla_titteleilla.get())
+        #tekstikenttiin eri termit pitää erottaa tietyillä merkeillä. Valitsin ", "
         sanalista = sana.split(", ")
         paikkalista = paikka.split(", ")
         ei_tittelit_lista = ei_tittelit.split(", ")
@@ -260,19 +290,19 @@ class tyonhaku_sovellus(Frame):
         for widget in widgets:
             widget.config(state=string)
         self.update()
-        return;
+        return
 
     def tyhjenna_GUI_input(self):
         #Kun syötetään tallennettuja tietoja, pitää varmistaa, että käyttäjä ei ollut jo antanut joitain tietoja.
         self.hakusana_kentta.delete(0, END)
         self.sijainti_kentta.delete(0, END)
         self.ei_nailla_titteleilla.delete(0, END)
-        return;
+        return
 
     def tyhjenna_tulosteksti_GUIssa(self):
         #tyhjentää hakukenttien alle tulevan kohdan, jonne tulee viestejä ja ohjeita
         self.tuloskohta.config(text=" ")
-        return;
+        return
 
     def change_tarkistus(self,string):
         #Kun syötetään tallennettuja tietoja, pitää varmistaa, että käyttäjä ei ollut jo antanut joitain tietoja.
@@ -282,6 +312,6 @@ class tyonhaku_sovellus(Frame):
 #luo ikkunan
 ikkuna = tk.Tk()
 ikkuna.title('Super työnhaku')
-ikkuna.geometry('700x900')
+ikkuna.geometry('700x1300')
 ikkuna = tyonhaku_sovellus(ikkuna)
 ikkuna.mainloop()

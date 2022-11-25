@@ -51,4 +51,4 @@ def suorita_haku_tyovoimatoimisto(hakusana, hakusijainti, ilmoitettu, kielletyt_
     #duplikaatit pitää poistaa, koska hakuja suoritetaan niin monta, kuin on hakusanoja. Sama voi tulla useassa haussa.
     tulostaulukko = tulostaulukko.drop_duplicates()
 
-    return tulostaulukko;
+    return tulostaulukko

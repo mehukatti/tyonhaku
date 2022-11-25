@@ -27,17 +27,20 @@ def paiva_muoto(y): #jos päivämäärä sisältää vuoden, ei lisätä vuotta.
             #jos päivä ei ole vielä mennyt esim. joulukuu, joka pitäisi olla viime vuodelta, pitäisi tämä ottaa huomioon. Nyt ei ota.
         y = y + str(date.today().year)
     y = date(*(time.strptime(y, '%d.%m.%Y')[0:3]))
-    return y;
+    return y
 
 def julkpaiva_laskuri(x): #Tarkistaa, kuinka monen päivän tulokset hakija haluaa nähdä ja muuttaa ne päiviksi. (Työkkärin arvot duunitoriin sopivaksi)
+    #x on suoraan GUI:ssa valitun julkaisupäivävalinnan arvo, ei ole sama asia kuin päivien lukumäärä.
+    #Mun funktioni takia pakko palauttaa päivien määrä, joiden ajalta hakutulokset halutaan.
     if x == 0:
-        return 150; #Käytännössä ei vanhempia tuloksia
+        #Jos x == 0, hakija haluaa kaikkina päivinä julkaistut hakutulokset 
+        return 150 #Käytännössä ei 150 päivää vanhempia tuloksia.
     elif x == 1:
-        return 1;
+        return 1
     elif x == 2:
-        return 3;
+        return 3
     elif x == 3:
-        return 7;
+        return 7
 
 def yhden_sivun_tulokset(sivu, y, kielletyt_tittelit, kielletyt_kategoriat):
     time.sleep(0.01)
@@ -107,6 +110,6 @@ def suorita_haku_duunitori(hakusanat, hakusijainti, negaatiot, haku_tekstista, j
         tulostaulukko = pd.DataFrame(tulokset).transpose()
         tulostaulukko.columns = ['Titteli', 'Työnantaja', 'Sijainti', 'Linkki', 'Julkaistu', 'Kategoria', 'Osuvuus']
         tulostaulukko = tulostaulukko.drop_duplicates()
-        return tulostaulukko;
+        return tulostaulukko
     else:
-        return pd.DataFrame();
+        return pd.DataFrame() #palautetaan tyhjä dataframe, jos tuloksia ei ollut

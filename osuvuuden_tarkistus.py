@@ -8,7 +8,7 @@ polku = 'duunitorin_kielletyt_kategoriat.json'
 
 #avaa kieltolista lukumuodossa
 def kieltolista_luku():
-     return access_files.open_json(polku);
+     return access_files.open_json(polku)
 
 def osuvuudet():
     kielletyt = kieltolista_luku()
@@ -21,4 +21,4 @@ def osuvuudet():
                 if ws.cell(row=cell.row, column=6).value not in kielletyt:
                     kielletyt.append(str(ws.cell(row=cell.row, column=6).value))
     access_files.write_data_to_json_with(kielletyt, polku)
-    return;
+    return
