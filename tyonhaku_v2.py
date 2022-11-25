@@ -17,6 +17,8 @@ class tyonhaku_sovellus(Frame):
     def luo_widgetit(self):
         canvas = Canvas(self)
 
+        #Saisikohan grid-sijaintiasetuksia jotenkin generoitua, ettei mun tarvitse laskea rivejä?
+
         #Ilmoitus tiedostojen sijainnista ja tuloksista
         self.tuloskohta = tk.Label(self.master, text=' ')
         self.tuloskohta.grid(row=5,columnspan=4, pady=5, sticky=W)
@@ -285,7 +287,9 @@ class tyonhaku_sovellus(Frame):
         self.en_disable_widgets("normal") #sallii GUI:n käytön haun jälkeen
     
     #tkinterin widgetien värit ja klikkauksien estot
-    def en_disable_widgets(self,string): #string voi olla joko "disabled" tai "normal". Jos on "disabled", ei voi klikkailla tai kirjoittaa ja jos on "normal", voi muokata.
+    def en_disable_widgets(self,string):
+        #string voi olla joko "disabled" tai "normal". Jos on "disabled", ei voi klikkailla tai kirjoittaa ja jos on "normal", voi muokata.
+        #tässä ei tarkisteta, onko oikein kirjoitettu. Pitäisikö tarkistaa?
         widgets = self.hakusana_kentta, self.sijainti_kentta, self.tekstista, self.duunitori, self.tyokkari, self.kaikki, self.vuorokausi, self.kolme_paivaa, self.viikko, self.tallenna_haku, self.tallennettu_nappi, self.haku_nappi, self.ei_nailla_titteleilla
         for widget in widgets:
             widget.config(state=string)
